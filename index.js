@@ -63,7 +63,7 @@ app.post("/create-invoice", async (req, res) => {
       data,
       {
         headers: {
-          Authorization: Bearer ${TRIPAY_API_KEY},
+          Authorization: 'Bearer ${TRIPAY_API_KEY}',
         },
       }
     );

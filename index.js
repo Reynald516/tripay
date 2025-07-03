@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, "public"))); // serve HTML/CSS dari 
 const { updateInvoiceStatus, getInvoiceStatus } = require("./invoiceStorage");
 
 // GANTI dengan API Key asli Tripay kamu
-const TRIPAY_API_KEY = "lzyfikgV9SMXTjdWtMvQojhKKVmTgL8c2ndEGNo5";
+const TRIPAY_API_KEY = process.env.TRIPAY_API_KEY;
 
 // Endpoint callback Tripay
 app.post("/callback", (req, res) => {

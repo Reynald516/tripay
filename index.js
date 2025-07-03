@@ -21,8 +21,8 @@ app.post("/callback", (req, res) => {
   console.log("Callback diterima:", invoice_reference, status);
 
   if (status === "PAID") {
-    invoiceStatus[invoice_reference] = "PAID";
-  }
+  updateInvoiceStatus(invoice_reference, "PAID");
+}
 
   res.status(200).send("Callback diterima");
 });
@@ -30,9 +30,8 @@ app.post("/callback", (req, res) => {
 // Endpoint untuk cek status invoice dari frontend
 app.get("/status/:invoice", (req, res) => {
   const invoice = req.params.invoice;
-  const status = invoiceStatus[invoice] || "UNPAID";
-  res.json({ invoice, status });
-});
+  const status = getInvoiceStatus(invoice);
+res.json({ invoice, status });
 
 // Endpoint untuk buat invoice baru
 app.post("/create-invoice", async (req, res) => {

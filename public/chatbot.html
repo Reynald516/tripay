@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chatbot Premium</title>
+  <meta charset="UTF-8" />
+</head>
+<body>
+  <h1>🤖 Chatbot Premium</h1>
+  <div id="status">Memeriksa status pembayaran...</div>
+  <div id="chatbot" style="display: none;">
+    <!-- Ganti URL iframe ini dengan Hugging Face chatbot kamu -->
+    <iframe
+      src="https://huggingface.co/spaces/YOUR_USERNAME/YOUR_CHATBOT"
+      width="100%"
+      height="600"
+      frameborder="0"
+    ></iframe>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const ref = urlParams.get("ref");
+
+    if (!ref) {
+      document.getElementById("status").innerText = "Akses ditolak: Tidak ada kode referensi.";
+    } else {
+      fetch(/status/${ref})
+        .then(res => res.json())
+        .then(data => {
+          if (data.status === "PAID") {
+            document.getElementById("status").style.display = "none";
+            document.getElementById("chatbot").style.display = "block";
+          } else {
+            document.getElementById("status").innerText = "Pembayaran belum diterima. Akses ditolak.";
+          }
+        })
+        .catch(err => {
+          document.getElementById("status").innerText = "Gagal memeriksa status. Coba lagi.";
+          console.error(err);
+        });
+    }
+  </script>
+</body>
+</html>

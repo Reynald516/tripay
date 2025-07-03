@@ -62,7 +62,7 @@ app.post("/create-invoice", async (req, res) => {
       data,
       {
         headers: {
-          Authorization: 'Bearer ${TRIPAY_API_KEY}',
+          Authorization: `Bearer ${TRIPAY_API_KEY}`,
         },
       }
     );
@@ -83,5 +83,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log('Server running at http://localhost:${port}');
+  console.log(`Server running at http://localhost:${port}`);
 });

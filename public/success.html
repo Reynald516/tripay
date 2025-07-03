@@ -6,6 +6,19 @@
 <body>
   <h1>🎉 Pembayaran Berhasil!</h1>
   <p>Terima kasih telah membeli akses chatbot premium.</p>
-  <a href="/">Kembali ke Halaman Utama</a>
+  <p><a id="linkChatbot" href="#">👉 Klik di sini untuk mulai pakai chatbot</a></p>
+
+  <script>
+    // Coba ambil ref dari query ?ref=
+    const urlParams = new URLSearchParams(window.location.search);
+    const ref = urlParams.get("ref");
+
+    const link = document.getElementById("linkChatbot");
+    if (ref) {
+      link.href = /chatbot.html?ref=${ref};
+    } else {
+      link.innerText = "Tidak bisa membuka chatbot (ref hilang)";
+    }
+  </script>
 </body>
 </html>

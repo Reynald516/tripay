@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Belajar AI Premium</title>
+  <meta charset="UTF-8" />
+</head>
+<body>
+  <h1>👋 Selamat datang di Belajar AI Premium</h1>
+  <p>Klik tombol di bawah untuk akses chatbot versi premium:</p>
+  <button id="aksesPremium">👑 Akses Premium</button>
+
+  <script>
+    document.getElementById("aksesPremium").addEventListener("click", async () => {
+      try {
+        const res = await fetch("/create-invoice", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            name: "Reynald",
+            email: "reynaldintelligence@email.com"
+          })
+        });
+
+        const data = await res.json();
+        if (data.invoice_url) {
+          window.location.href = data.invoice_url;
+        } else {
+          alert("Gagal membuat invoice.");
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Terjadi kesalahan saat membuat invoice.");
+      }
+    });
+  </script>
+</body>
+</html>

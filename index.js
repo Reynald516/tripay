@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "public"))); // serve HTML/CSS dari /public
 
 // Simpan status invoice
-const invoiceStatus = {};
+const { updateInvoiceStatus, getInvoiceStatus } = require("./invoiceStorage");
 
 // GANTI dengan API Key asli Tripay kamu
 const TRIPAY_API_KEY = "lzyfikgV9SMXTjdWtMvQojhKKVmTgL8c2ndEGNo5";
